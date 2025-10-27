@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { ShoppingBag } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
 
@@ -176,9 +177,9 @@ const Hero = () => {
 
         <Link
           to="/shop"
-          className="bg-indigo-500 text-white font-medium py-2 px-4 rounded-lg transition-all hover:bg-indigo-600 active:scale-95"
+          className="bg-indigo-500 text-white font-medium py-2 px-4 rounded-lg transition-all hover:bg-indigo-600 active:scale-95 flex w-[150px] gap-1.5"
         >
-          Shop Now
+          <ShoppingBag /> Shop Now
         </Link>
       </div>
       <ShuffleGrid />
