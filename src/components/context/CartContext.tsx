@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
 
-interface CartItem {
+export interface CartItem {
   id: number;
   name: string;
   price: number;
@@ -36,7 +36,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       }
       return [...prev, newItem];
     });
-    setIsSidebarOpen(true); // ✅ Auto open sidebar on add
+    setIsSidebarOpen(false); // Auto open sidebar
   };
 
   const removeFromCart = (id: number) => {

@@ -22,14 +22,11 @@ const MiniCartSidebar = () => {
 
   const increaseQty = (item: (typeof items)[0]) =>
     addToCart({ ...item, quantity: 1 });
-
   const decreaseQty = (item: (typeof items)[0]) => {
     if (item.quantity > 1) {
       removeFromCart(item.id);
       addToCart({ ...item, quantity: item.quantity - 1 });
-    } else {
-      removeFromCart(item.id);
-    }
+    } else removeFromCart(item.id);
   };
 
   return (
