@@ -2,8 +2,8 @@ import { useParams } from "react-router";
 import { useState } from "react";
 import ProductImage from "@/components/Product/ProductImage";
 import QuantitySelector from "@/components/Product/QuantitySelector";
-import { useCart } from "../context/CartContext";
 import { useGetProductByIdQuery } from "../RTK/features/api/products.Api";
+import { UseCart } from "../context/CartContext";
 
 const ProductDetailsPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -12,7 +12,7 @@ const ProductDetailsPage = () => {
     isLoading,
     isError,
   } = useGetProductByIdQuery(Number(id));
-  const { addToCart } = useCart();
+  const { addToCart } = UseCart();
   const [quantity, setQuantity] = useState(1);
 
   if (isLoading) return <p>Loading...</p>;

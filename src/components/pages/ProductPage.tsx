@@ -7,12 +7,12 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useCart } from "../context/CartContext";
 import { useGetProductsQuery } from "../RTK/features/api/products.Api";
+import { UseCart } from "../context/CartContext";
 
 const ProductPage = () => {
   const { data: products, isLoading, isError } = useGetProductsQuery();
-  const { addToCart } = useCart();
+  const { addToCart } = UseCart();
 
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Error loading products!</p>;

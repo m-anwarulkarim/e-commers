@@ -43,7 +43,7 @@ export const NavMenu = (props: ComponentProps<typeof NavigationMenu>) => (
         </NavigationMenuContent>
       </NavigationMenuItem>
       <NavigationMenuItem>
-        <NavigationMenuTrigger>Travel</NavigationMenuTrigger>
+        <NavigationMenuTrigger>Tech</NavigationMenuTrigger>
         <NavigationMenuContent>
           <ul className="grid w-[400px] gap-3 p-1 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
             {travelMenuItems.map((menuItem) => (

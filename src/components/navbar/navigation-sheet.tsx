@@ -5,6 +5,7 @@ import { Menu } from "lucide-react";
 import { foods, travelMenuItems } from "./config";
 import { Logo } from "./logo";
 import { Link } from "react-router";
+import { ModeToggle } from "../ui/theme/mode-toggle";
 
 export const NavigationSheet = () => {
   return (
@@ -37,7 +38,7 @@ export const NavigationSheet = () => {
           </div>
 
           <div>
-            <div className="font-bold">Travel</div>
+            <div className="font-bold">Tech</div>
             <ul className="mt-2 space-y-3 ml-1 pl-4 border-l">
               {travelMenuItems.map((item) => (
                 <li key={item.title}>
@@ -49,6 +50,9 @@ export const NavigationSheet = () => {
               ))}
             </ul>
           </div>
+        </div>
+        <div>
+          <ModeToggle />
         </div>
       </SheetContent>
     </Sheet>

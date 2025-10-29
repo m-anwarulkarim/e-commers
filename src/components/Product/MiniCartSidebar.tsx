@@ -8,8 +8,7 @@ import {
 } from "@/components/ui/sheet";
 import { Trash, Plus, Minus } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useCart } from "../context/CartContext";
-
+import { UseCart } from "../context/CartContext";
 const MiniCartSidebar = () => {
   const {
     items,
@@ -18,7 +17,7 @@ const MiniCartSidebar = () => {
     totalPrice,
     isSidebarOpen,
     closeSidebar,
-  } = useCart();
+  } = UseCart();
 
   const increaseQty = (item: (typeof items)[0]) =>
     addToCart({ ...item, quantity: 1 });

@@ -7,6 +7,8 @@ import { CartProvider } from "./components/context/CartContext";
 import MiniCartSidebar from "./components/Product/MiniCartSidebar";
 import { Provider as ReduxProvider } from "react-redux";
 import { store } from "./components/RTK/store";
+import { Toaster } from "sonner";
+import { ThemeProvider } from "./components/ui/theme/theme-provider";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -15,7 +17,10 @@ createRoot(document.getElementById("root")!).render(
         <div className="p-4 flex justify-end">
           <MiniCartSidebar />
         </div>
-        <RouterProvider router={router} />{" "}
+        <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+          <RouterProvider router={router} />{" "}
+          <Toaster richColors position="top-right" />
+        </ThemeProvider>
       </CartProvider>
     </ReduxProvider>
   </StrictMode>

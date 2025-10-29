@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
+import { toast } from "sonner";
 
 export interface CartItem {
   id: number;
@@ -36,7 +37,8 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       }
       return [...prev, newItem];
     });
-    setIsSidebarOpen(false); // Auto open sidebar
+
+    toast.success(`${newItem.name} added to cart! 🛒`);
   };
 
   const removeFromCart = (id: number) => {
@@ -68,7 +70,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export const useCart = () => {
+export const UseCart = () => {
   const context = useContext(CartContext);
   if (!context) throw new Error("useCart must be used within CartProvider");
   return context;

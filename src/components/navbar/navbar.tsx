@@ -6,11 +6,12 @@ import { Button } from "../ui/button";
 import { Search, ShoppingCart } from "lucide-react";
 import { useState } from "react";
 import MiniCartSidebar from "@/components/Product/MiniCartSidebar";
-import { useCart } from "../context/CartContext";
+import { UseCart } from "../context/CartContext";
+import { ModeToggle } from "../ui/theme/mode-toggle";
 
 const Navbar = () => {
   const [search, setSearch] = useState(false);
-  const { openSidebar, items } = useCart();
+  const { openSidebar, items } = UseCart();
 
   return (
     <div className="bg-muted">
@@ -42,7 +43,10 @@ const Navbar = () => {
               <ShoppingCart />
               <span>Cart ({items.length})</span>
             </div>
-
+            <div className="hidden md:block ">
+              <ModeToggle />
+            </div>
+            {/* mobile menu */}
             <div className="md:hidden">
               <NavigationSheet />
             </div>
