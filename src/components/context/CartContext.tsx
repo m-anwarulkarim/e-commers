@@ -1,4 +1,10 @@
-import { createContext, useContext, useState, type ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  type ReactNode,
+} from "react";
 import { toast } from "sonner";
 
 export interface CartItem {
@@ -22,27 +28,41 @@ interface CartContextType {
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
-  const [items, setItems] = useState<CartItem[]>([]);
+  // ✅ Load saved cart from localStorage (if exists)
+  const [items, setItems] = useState<CartItem[]>(() => {
+    const saved = localStorage.getItem("cart-items");
+    return saved ? JSON.parse(saved) : [];
+  });
+
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  // ✅ Save cart to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem("cart-items", JSON.stringify(items));
+  }, [items]);
 
   const addToCart = (newItem: CartItem) => {
     setItems((prev) => {
       const existing = prev.find((i) => i.id === newItem.id);
       if (existing) {
+        toast.info(`${newItem.name} quantity updated 🛍️`);
         return prev.map((i) =>
           i.id === newItem.id
             ? { ...i, quantity: i.quantity + newItem.quantity }
             : i
         );
       }
+      toast.success(`${newItem.name} added to cart! 🛒`);
       return [...prev, newItem];
     });
-
-    toast.success(`${newItem.name} added to cart! 🛒`);
   };
 
   const removeFromCart = (id: number) => {
-    setItems((prev) => prev.filter((i) => i.id !== id));
+    setItems((prev) => {
+      const updated = prev.filter((i) => i.id !== id);
+      toast.error("Item removed from cart ❌");
+      return updated;
+    });
   };
 
   const openSidebar = () => setIsSidebarOpen(true);
